@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="<!-- keyword============================================ -->">
+<meta name="description" content="<!-- description============================================ -->">
+<meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Vue.js</title>
+<link rel="alternate" media="only screen and(max-width:640px)" href="/sp/">
+<link rel="shortcut icon" href="/favicon.ico">
+
+<!-- Styles============================================ -->
+<link rel="stylesheet" href="assets/styles/semantic.css">
+<link rel="stylesheet" href="/assets/styles/core.css">
+<script src="assets/scripts/vue.js"></script>
+<!-- Scripts=========================================== -->
+
+<!-- Ogp=============================================== -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="">
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:url" content="">
+<meta property="og:image" content="">
+<meta property="fb:app_id" content="">
+<meta name="twitter:card" content="">
+<meta name="twitter:title" content=""> 
+<meta name="twitter:description" content="">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="">
+
+<!-- GA==================================================== -->
+
+</head>
+<body class="layouts pushable">
+
+	<div class="pusher">
+
+		<div class="ui masthead vertical segment">
+			<div class="ui container">
+				<h1 class="ui header">
+					Vue.js
+				</h1>
+				<div class="ui hidden divider"></div>
+			</div>
+
+			<div class="main ui container">
+
+				<!-- DEMO1==================================================== -->
+				<h2 class="ui dividing header">DEMO1</h2>
+				<div id="app">
+					<p>{{ message }}</p>
+				</div>
+				
+				<script>
+				var app = new Vue({
+					el: '#app',
+					data: {
+						message: 'Hello Vue js!'
+					}
+				})
+				</script>
+
+				<!-- DEMO2==================================================== -->
+				<h2 class="ui dividing header">DEMO2</h2>
+				<div id="app-2">
+					<span v-bind:title="message">
+					Hover your mouse over me for a few seconds
+					to see my dynamically bound title!
+					</span>
+				</div>
+				
+				<script>
+				var app2 = new Vue({
+					el: '#app-2',
+					data: {
+						message: 'You loaded this page on ' + new Date().toLocaleString()
+					}
+				})
+				</script>
+
+				<!-- DEMO3==================================================== -->
+				<h2 class="ui dividing header">DEMO3</h2>
+				<div id="app-3">
+					<p v-if="seen">Now you see me</p>
+				</div>
+				
+				<script>
+				var app3 = new Vue({
+					el: '#app-3',
+					data: {
+						seen: true
+					}
+				})
+				</script>
+
+				<!-- DEMO4==================================================== -->
+				<h2 class="ui dividing header">DEMO4</h2>
+				<div id="app-4">
+					<ol class="ui list">
+						<li v-for="todo in todos">
+							{{ todo.text }}
+						</li>
+					</ol>
+				</div>
+				
+				<script>
+				var app4 = new Vue({
+					el: '#app-4',
+					data: {
+						todos: [
+							{ text: 'Learn JavaScript' },
+							{ text: 'Learn Vue' },
+							{ text: 'Build something awesome' }
+						]
+					}
+				})
+				</script>
+
+				<!-- DEMO5==================================================== -->
+				<h2 class="ui dividing header">DEMO5</h2>
+				<div id="app-5">
+					<p>{{ message }}</p>
+					<button class="ui black basic button" v-on:click="reverseMessage">Reverse Message</button>
+				</div>
+				
+				<script>
+				var app5 = new Vue({
+					el: '#app-5',
+					data: {
+						message: 'Hello Vue.js!'
+					},
+					methods: {
+						reverseMessage: function() {
+							this.message = this.message.split('').reverse().join('')
+						}
+					}
+				})
+				</script>
+
+				<!-- DEMO6==================================================== -->
+				<h2 class="ui dividing header">DEMO6</h2>
+				<div id="app-6">
+					<p>{{ message }}</p>
+					<div class="ui input">
+						<input v-model="message">
+					</div>
+				</div>
+				
+				<script>
+				var app6 = new Vue({
+					el: '#app-6',
+					data: {
+						message: 'Hello Vue!'
+					}
+				})
+				</script>
+
+				<!-- DEMO7==================================================== -->
+				<h2 class="ui dividing header">DEMO7</h2>
+				<div id="app-7">
+					<ol class="ui list">
+						<!--
+							todo オブジェクトによって各 todo-item を提供します。
+							それは、内容を動的にできるように表します。
+							また後述する "key" で各コンポーネントに提供する必要があります。
+						-->
+						<todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+					</ol>
+				</div>
+				
+				<script>
+					Vue.component('todo-item', {
+						props: ['todo'],
+						template: '<li>{{ todo.text }}</li>'
+					})
+					var app7 = new Vue({
+						el: '#app-7',
+						data: {
+							groceryList: [
+							{ id: 0, text: 'Vegetables' },
+							{ id: 1, text: 'Cheese' },
+							{ id: 2, text: 'Whatever else humans are supposed to eat' }
+							]
+						}
+					})
+				</script>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
