@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="keywords" content="<!-- keyword============================================ -->">
+<meta name="description" content="<!-- description============================================ -->">
+<meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Vue.js</title>
+<link rel="alternate" media="only screen and(max-width:640px)" href="/sp/">
+<link rel="shortcut icon" href="/favicon.ico">
+
+<!-- Styles============================================ -->
+<link rel="stylesheet" href="/assets/styles/semantic.css">
+<link rel="stylesheet" href="/assets/styles/core.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="/assets/scripts/semantic.js"></script>
+<script src="/assets/scripts/vue.js"></script>
+<!-- Scripts=========================================== -->
+
+<!-- Ogp=============================================== -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="">
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:url" content="">
+<meta property="og:image" content="">
+<meta property="fb:app_id" content="">
+<meta name="twitter:card" content="">
+<meta name="twitter:title" content=""> 
+<meta name="twitter:description" content="">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="">
+
+<!-- GA==================================================== -->
+
+</head>
+<body class="layouts pushable">
+
+
+	<div class="pusher">
+
+		<div class="ui masthead vertical segment">
+			<div class="ui container">
+				<h1 class="ui header">
+					<a href="/">Vue.js</a>
+				</h1>
+				<div class="ui hidden divider"></div>
+			</div>
+		<div class="main ui container">
+
+			<div class="ui horizontal bulleted list">
+				<a class="item" href="/sample1/">Sample1</a>
+				<a class="item disabled">Link</a>
+				<a class="item disabled">Link</a>
+			</div>
+
+			<div class="main ui container">
+
+				<!-- SPA DEMO==================================================== -->
+				<h2 class="ui dividing header">SPA DEMO</h2>
+
+				<div class="ui horizontal bulleted list">
+					<a class="item">PAGE1</a>
+					<a class="item">PAGE2</a>
+					<a class="item">PAGE3</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+<script>
+import Vue from 'vue'
+import routes from './routes'
+
+const app = new Vue({
+  el: '#app',
+  data: {
+    currentRoute: window.location.pathname
+  },
+  computed: {
+    ViewComponent () {
+      const matchingView = routes[this.currentRoute]
+      return if(matchingView) {
+        require('./pages/' + matchingView + '.vue')
+      }else {
+        require('./pages/404.vue')
+      }
+    }
+  },
+  render (h) {
+    return h(this.ViewComponent)
+  }
+})
+
+window.addEventListener('popstate', () => {
+  app.currentRoute = window.location.pathname
+})
+</script>
+</body>
+</html>
