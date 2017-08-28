@@ -47,6 +47,8 @@
 				</h1>
 				<div class="ui hidden divider"></div>
 			</div>
+		</div>
+
 		<div class="main ui container">
 
 			<div class="ui horizontal bulleted list">
@@ -60,43 +62,14 @@
 				<!-- SPA DEMO==================================================== -->
 				<h2 class="ui dividing header">SPA DEMO</h2>
 
-				<div class="ui horizontal bulleted list">
-					<a class="item">PAGE1</a>
-					<a class="item">PAGE2</a>
-					<a class="item">PAGE3</a>
+				<div id="app">
+					<p>{{ message }}</p>
 				</div>
 
 			</div>
 		</div>
 	</div>
-
-<script>
-import Vue from 'vue'
-import routes from './routes'
-
-const app = new Vue({
-  el: '#app',
-  data: {
-    currentRoute: window.location.pathname
-  },
-  computed: {
-    ViewComponent () {
-      const matchingView = routes[this.currentRoute]
-      return if(matchingView) {
-        require('./pages/' + matchingView + '.vue')
-      }else {
-        require('./pages/404.vue')
-      }
-    }
-  },
-  render (h) {
-    return h(this.ViewComponent)
-  }
-})
-
-window.addEventListener('popstate', () => {
-  app.currentRoute = window.location.pathname
-})
-</script>
+<script src="/sample1/build.js"></script>
+<script src="/sample1/main.js"></script>
 </body>
 </html>
