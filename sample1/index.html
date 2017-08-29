@@ -68,8 +68,8 @@
 						<!-- ナビゲーションに router-link コンポーネントを使う -->
 						<!-- リンク先を `to` プロパティに指定します -->
 						<!-- デフォルトで `<router-link>` は `<a>` タグとして描画されます -->
-						<router-link to="/" class="item">Page1</router-link>
-						<router-link to="/page2" class="item">Page2</router-link>
+						<router-link to="/index.html" class="item">Page1</router-link>
+						<router-link to="/page2.html" class="item">Page2</router-link>
 					</p>
 					<!-- ルートアウトレット -->
 					<!-- ルートとマッチしたコンポーネントがここへ描画されます -->
@@ -119,13 +119,24 @@
 <script>
 // 0. モジュールシステムを使っている場合 (例: vue-cli 経由で)、Vue と VueRouter をインポートし、`Vue.use(VueRouter)` を呼び出します。
 
+
 // 1. ルートコンポーネントを定義します
 // 他のファイルからインポートすることもできます
 const Page1 = {
-	template: '<h4 class="ui header">Hello App!</h4><p>texttext</p>'
+	template: `
+		<div class="container box">
+			<h4 class="ui header">Page1</h4>
+			<p><img src="/assets/images/sample1/paragraph.png" alt="" /></p>
+		</div>
+		`
 }
 const Page2 = {
-	template: '<div>bar</div>'
+	template: `
+		<div class="container box">
+			<h4 class="ui header">Page2</h4>
+			<p><img src="/assets/images/sample1/paragraph.png" alt="" /></p>
+		</div>
+		`
 }
 
 // 2. ルートをいくつか定義します
@@ -133,16 +144,17 @@ const Page2 = {
 // このコンポーネントは実際の `Vue.extend()`、
 // またはコンポーネントオプションのオブジェクトでも構いません。
 // ネストされたルートに関しては後で説明します
-const routes = [
-  { path: '/', component: Page1 },
-  { path: '/page2', component: Page2 }
-]
 
 // 3. ルーターインスタンスを作成して、ルートオプションを渡します
 // 追加のオプションをここで指定できますが、
 // この例ではシンプルにしましょう
 const router = new VueRouter({
-  routes // `routes: routes` の短縮表記
+  mode: 'history',
+  base: 'sample1',
+  routes: [
+	  { path: 'index.html', component: Page1 },
+	  { path: 'page2.html', component: Page2 }
+	]
 })
 
 // 4. root となるインスタンスを作成してマウントします
