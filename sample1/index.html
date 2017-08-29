@@ -64,12 +64,12 @@
 				<h2 class="ui dividing header">SPA DEMO</h2>
 				<div id="app">
 					<h3 class="ui header">Hello App!</h3>
-					<p>
+					<p class="ui horizontal bulleted list">
 						<!-- ナビゲーションに router-link コンポーネントを使う -->
 						<!-- リンク先を `to` プロパティに指定します -->
 						<!-- デフォルトで `<router-link>` は `<a>` タグとして描画されます -->
-						<router-link to="/foo">Go to Foo</router-link>
-						<router-link to="/bar">Go to Bar</router-link>
+						<router-link to="/" class="item">Page1</router-link>
+						<router-link to="/page2" class="item">Page2</router-link>
 					</p>
 					<!-- ルートアウトレット -->
 					<!-- ルートとマッチしたコンポーネントがここへ描画されます -->
@@ -121,8 +121,12 @@
 
 // 1. ルートコンポーネントを定義します
 // 他のファイルからインポートすることもできます
-const Foo = { template: '<div>foo</div>' }
-const Bar = { template: '<div>bar</div>' }
+const Page1 = {
+	template: '<h4 class="ui header">Hello App!</h4><p>texttext</p>'
+}
+const Page2 = {
+	template: '<div>bar</div>'
+}
 
 // 2. ルートをいくつか定義します
 // 各ルートは 1 つのコンポーネントとマッピングされる必要があります。
@@ -130,8 +134,8 @@ const Bar = { template: '<div>bar</div>' }
 // またはコンポーネントオプションのオブジェクトでも構いません。
 // ネストされたルートに関しては後で説明します
 const routes = [
-  { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
+  { path: '/', component: Page1 },
+  { path: '/page2', component: Page2 }
 ]
 
 // 3. ルーターインスタンスを作成して、ルートオプションを渡します
