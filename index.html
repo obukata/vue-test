@@ -40,165 +40,203 @@
 
 <div class="pusher">
 
-	<div class="ui masthead vertical segment">
-		<div class="ui container">
-			<h1 class="ui header"><a href="/">Vue.js</a></h1>
-			<div class="ui hidden divider"></div>
-		</div>
-	</div>
-	
-	<div class="main ui container">
-
-		<div class="ui horizontal bulleted list">
-			<a class="item" href="/sample1/">Sample1</a>
-			<a class="item disabled">Link</a>
-			<a class="item disabled">Link</a>
+	<div class="full height">
+		<div class="ui masthead vertical segment">
+			<div class="ui container">
+				<h1 class="ui header">
+					<a href="/">Vue.js</a>
+				</h1>
+				<div class="ui hidden divider"></div>
+				<div class="ui horizontal bulleted list">
+					<a class="item" href="/sample1/">SPA DEMO</a>
+					<a class="item disabled">Link</a>
+					<a class="item disabled">Link</a>
+				</div>
+			</div>
 		</div>
 
 		<div class="main ui container">
-
-			<!-- DEMO1==================================================== -->
-			<h2 class="ui dividing header">DEMO1</h2>
-			<div id="app">
-				<p>{{ message }}</p>
-			</div>
-			
-			<script>
-			var app = new Vue({
-				el: '#app',
-				data: {
-					message: 'Hello Vue js!'
-				}
-			})
-			</script>
-
-			<!-- DEMO2==================================================== -->
-			<h2 class="ui dividing header">DEMO2</h2>
-			<div id="app-2">
-				<span v-bind:title="message">
-				Hover your mouse over me for a few seconds
-				to see my dynamically bound title!
-				</span>
-			</div>
-			
-			<script>
-			var app2 = new Vue({
-				el: '#app-2',
-				data: {
-					message: 'You loaded this page on ' + new Date().toLocaleString()
-				}
-			})
-			</script>
-
-			<!-- DEMO3==================================================== -->
-			<h2 class="ui dividing header">DEMO3</h2>
-			<div id="app-3">
-				<p v-if="seen">Now you see me</p>
-			</div>
-			
-			<script>
-			var app3 = new Vue({
-				el: '#app-3',
-				data: {
-					seen: true
-				}
-			})
-			</script>
-
-			<!-- DEMO4==================================================== -->
-			<h2 class="ui dividing header">DEMO4</h2>
-			<div id="app-4">
-				<ol class="ui list">
-					<li v-for="todo in todos">
-						{{ todo.text }}
-					</li>
-				</ol>
-			</div>
-			
-			<script>
-			var app4 = new Vue({
-				el: '#app-4',
-				data: {
-					todos: [
-						{ text: 'Learn JavaScript' },
-						{ text: 'Learn Vue' },
-						{ text: 'Build something awesome' }
-					]
-				}
-			})
-			</script>
-
-			<!-- DEMO5==================================================== -->
-			<h2 class="ui dividing header">DEMO5</h2>
-			<div id="app-5">
-				<p>{{ message }}</p>
-				<button class="ui black basic button" v-on:click="reverseMessage">Reverse Message</button>
-			</div>
-			
-			<script>
-			var app5 = new Vue({
-				el: '#app-5',
-				data: {
-					message: 'Hello Vue.js!'
-				},
-				methods: {
-					reverseMessage: function() {
-						this.message = this.message.split('').reverse().join('')
-					}
-				}
-			})
-			</script>
-
-			<!-- DEMO6==================================================== -->
-			<h2 class="ui dividing header">DEMO6</h2>
-			<div id="app-6">
-				<p>{{ message }}</p>
-				<div class="ui input">
-					<input v-model="message">
+			<div class="ui container">
+		
+				<!-- DEMO1==================================================== -->
+				<h2 class="ui dividing header">DEMO1</h2>
+				<div id="app">
+					<p>{{ message }}</p>
 				</div>
-			</div>
-			
-			<script>
-			var app6 = new Vue({
-				el: '#app-6',
-				data: {
-					message: 'Hello Vue!'
-				}
-			})
-			</script>
-
-			<!-- DEMO7==================================================== -->
-			<h2 class="ui dividing header">DEMO7</h2>
-			<div id="app-7">
-				<ol class="ui list">
-					<!--
-						todo オブジェクトによって各 todo-item を提供します。
-						それは、内容を動的にできるように表します。
-						また後述する "key" で各コンポーネントに提供する必要があります。
-					-->
-					<todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
-				</ol>
-			</div>
-			
-			<script>
-				Vue.component('todo-item', {
-					props: ['todo'],
-					template: '<li>{{ todo.text }}</li>'
-				})
-				var app7 = new Vue({
-					el: '#app-7',
+				
+				<script>
+				var app = new Vue({
+					el: '#app',
 					data: {
-						groceryList: [
-						{ id: 0, text: 'Vegetables' },
-						{ id: 1, text: 'Cheese' },
-						{ id: 2, text: 'Whatever else humans are supposed to eat' }
+						message: 'Hello Vue js!'
+					}
+				})
+				</script>
+		
+				<!-- DEMO2==================================================== -->
+				<h2 class="ui dividing header">DEMO2</h2>
+				<div id="app-2">
+					<span v-bind:title="message">
+					Hover your mouse over me for a few seconds
+					to see my dynamically bound title!
+					</span>
+				</div>
+				
+				<script>
+				var app2 = new Vue({
+					el: '#app-2',
+					data: {
+						message: 'You loaded this page on ' + new Date().toLocaleString()
+					}
+				})
+				</script>
+		
+				<!-- DEMO3==================================================== -->
+				<h2 class="ui dividing header">DEMO3</h2>
+				<div id="app-3">
+					<p v-if="seen">Now you see me</p>
+				</div>
+				
+				<script>
+				var app3 = new Vue({
+					el: '#app-3',
+					data: {
+						seen: true
+					}
+				})
+				</script>
+		
+				<!-- DEMO4==================================================== -->
+				<h2 class="ui dividing header">DEMO4</h2>
+				<div id="app-4">
+					<ol class="ui list">
+						<li v-for="todo in todos">
+							{{ todo.text }}
+						</li>
+					</ol>
+				</div>
+				
+				<script>
+				var app4 = new Vue({
+					el: '#app-4',
+					data: {
+						todos: [
+							{ text: 'Learn JavaScript' },
+							{ text: 'Learn Vue' },
+							{ text: 'Build something awesome' }
 						]
 					}
 				})
-			</script>
+				</script>
+		
+				<!-- DEMO5==================================================== -->
+				<h2 class="ui dividing header">DEMO5</h2>
+				<div id="app-5">
+					<p>{{ message }}</p>
+					<button class="ui black basic button" v-on:click="reverseMessage">Reverse Message</button>
+				</div>
+				
+				<script>
+				var app5 = new Vue({
+					el: '#app-5',
+					data: {
+						message: 'Hello Vue.js!'
+					},
+					methods: {
+						reverseMessage: function() {
+							this.message = this.message.split('').reverse().join('')
+						}
+					}
+				})
+				</script>
+		
+				<!-- DEMO6==================================================== -->
+				<h2 class="ui dividing header">DEMO6</h2>
+				<div id="app-6">
+					<p>{{ message }}</p>
+					<div class="ui input">
+						<input v-model="message">
+					</div>
+				</div>
+				
+				<script>
+				var app6 = new Vue({
+					el: '#app-6',
+					data: {
+						message: 'Hello Vue!'
+					}
+				})
+				</script>
+		
+				<!-- DEMO7==================================================== -->
+				<h2 class="ui dividing header">DEMO7</h2>
+				<div id="app-7">
+					<ol class="ui list">
+						<!--
+							todo オブジェクトによって各 todo-item を提供します。
+							それは、内容を動的にできるように表します。
+							また後述する "key" で各コンポーネントに提供する必要があります。
+						-->
+						<todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+					</ol>
+				</div>
+				
+				<script>
+					Vue.component('todo-item', {
+						props: ['todo'],
+						template: '<li>{{ todo.text }}</li>'
+					})
+					var app7 = new Vue({
+						el: '#app-7',
+						data: {
+							groceryList: [
+							{ id: 0, text: 'Vegetables' },
+							{ id: 1, text: 'Cheese' },
+							{ id: 2, text: 'Whatever else humans are supposed to eat' }
+							]
+						}
+					})
+				</script>
+		
+			</div>
+		</div>
+		<div class="main container"></div>
+	</div>
 
+	<div class="ui blue inverted vertical footer segment">
+		<div class="ui center aligned container">
+			<div class="ui stackable inverted grid">
+				<div class="four wide column">
+					<h4 class="ui inverted header">SPA DEMO</h4>
+					<div class="ui inverted link list horizontal">
+						<a class="item" href="/sample1/" target="_blank">SPA TUTORIAL</a>
+					</div>
+				</div>
+				<div class="four wide column">
+					<h4 class="ui inverted header">Link</h4>
+					<div class="ui inverted link list horizontal">
+						<a class="item disabled" target="_blank">Link</a>
+						<a class="item disabled" target="_blank">Link</a>
+					</div>
+				</div>
+				<div class="four wide column">
+					<h4 class="ui inverted header">Link</h4>
+					<div class="ui inverted link list horizontal">
+						<a class="item disabled" target="_blank">Link</a>
+						<a class="item disabled" target="_blank">Link</a>
+						<a class="item disabled" target="_blank">Link</a>
+					</div>
+				</div>
+				<div class="four wide column">
+					<h4 class="ui inverted header">Link</h4>
+					<div class="ui inverted link list horizontal">
+						<a class="item disabled" target="_blank">Link</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+
 </div>
 
 </body>

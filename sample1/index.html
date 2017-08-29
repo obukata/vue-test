@@ -16,6 +16,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="/assets/scripts/semantic.js"></script>
 <script src="/assets/scripts/vue.js"></script>
+<script src="/assets/scripts/vue-router.js"></script>
 <!-- Scripts=========================================== -->
 
 <!-- Ogp=============================================== -->
@@ -38,7 +39,9 @@
 <body class="layouts pushable">
 
 
-	<div class="pusher">
+<div class="pusher">
+
+	<div class="full height">
 
 		<div class="ui masthead vertical segment">
 			<div class="ui container">
@@ -46,30 +49,106 @@
 					<a href="/">Vue.js</a>
 				</h1>
 				<div class="ui hidden divider"></div>
+				<div class="ui horizontal bulleted list">
+					<a class="item" href="/sample1/">Sample1</a>
+					<a class="item disabled">Link</a>
+					<a class="item disabled">Link</a>
+				</div>
 			</div>
 		</div>
-
+		
 		<div class="main ui container">
-
-			<div class="ui horizontal bulleted list">
-				<a class="item" href="/sample1/">Sample1</a>
-				<a class="item disabled">Link</a>
-				<a class="item disabled">Link</a>
-			</div>
-
-			<div class="main ui container">
+			<div class="ui container">
 
 				<!-- SPA DEMO==================================================== -->
 				<h2 class="ui dividing header">SPA DEMO</h2>
-
 				<div id="app">
-					<p>{{ message }}</p>
+					<h3 class="ui header">Hello App!</h3>
+					<p>
+						<!-- ナビゲーションに router-link コンポーネントを使う -->
+						<!-- リンク先を `to` プロパティに指定します -->
+						<!-- デフォルトで `<router-link>` は `<a>` タグとして描画されます -->
+						<router-link to="/foo">Go to Foo</router-link>
+						<router-link to="/bar">Go to Bar</router-link>
+					</p>
+					<!-- ルートアウトレット -->
+					<!-- ルートとマッチしたコンポーネントがここへ描画されます -->
+					<router-view></router-view>
 				</div>
+		
+			</div>
+		</div>
+		<div class="main container"></div>
+	</div>
 
+	<div class="ui blue inverted vertical footer segment">
+		<div class="ui center aligned container">
+			<div class="ui stackable inverted grid">
+				<div class="four wide column">
+					<h4 class="ui inverted header">SPA DEMO</h4>
+					<div class="ui inverted link list horizontal">
+						<a class="item" href="/sample1/" target="_blank">SPA TUTORIAL</a>
+					</div>
+				</div>
+				<div class="four wide column">
+					<h4 class="ui inverted header">Link</h4>
+					<div class="ui inverted link list horizontal">
+						<a class="item disabled" target="_blank">Link</a>
+						<a class="item disabled" target="_blank">Link</a>
+					</div>
+				</div>
+				<div class="four wide column">
+					<h4 class="ui inverted header">Link</h4>
+					<div class="ui inverted link list horizontal">
+						<a class="item disabled" target="_blank">Link</a>
+						<a class="item disabled" target="_blank">Link</a>
+						<a class="item disabled" target="_blank">Link</a>
+					</div>
+				</div>
+				<div class="four wide column">
+					<h4 class="ui inverted header">Link</h4>
+					<div class="ui inverted link list horizontal">
+						<a class="item disabled" target="_blank">Link</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-<script src="/sample1/build.js"></script>
-<script src="/sample1/main.js"></script>
+</div>
+
+<script>
+// 0. モジュールシステムを使っている場合 (例: vue-cli 経由で)、Vue と VueRouter をインポートし、`Vue.use(VueRouter)` を呼び出します。
+
+// 1. ルートコンポーネントを定義します
+// 他のファイルからインポートすることもできます
+const Foo = { template: '<div>foo</div>' }
+const Bar = { template: '<div>bar</div>' }
+
+// 2. ルートをいくつか定義します
+// 各ルートは 1 つのコンポーネントとマッピングされる必要があります。
+// このコンポーネントは実際の `Vue.extend()`、
+// またはコンポーネントオプションのオブジェクトでも構いません。
+// ネストされたルートに関しては後で説明します
+const routes = [
+  { path: '/foo', component: Foo },
+  { path: '/bar', component: Bar }
+]
+
+// 3. ルーターインスタンスを作成して、ルートオプションを渡します
+// 追加のオプションをここで指定できますが、
+// この例ではシンプルにしましょう
+const router = new VueRouter({
+  routes // `routes: routes` の短縮表記
+})
+
+// 4. root となるインスタンスを作成してマウントします
+// アプリケーション全体がルーターを認知できるように、
+// ルーターをインジェクトすることを忘れないでください。
+const app = new Vue({
+  router
+}).$mount('#app')
+
+// これで開始です!
+</script>
 </body>
 </html>
